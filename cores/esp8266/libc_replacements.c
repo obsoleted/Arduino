@@ -75,6 +75,20 @@ int ICACHE_RAM_ATTR sprintf(char* buffer, const char* format, ...) {
     return ret;
 }
 
+int ICACHE_RAM_ATTR fprintf(FILE* file, const char* format, ...) {
+    // if(file != stderr || file != stdout) {
+    //     return -1;
+    // }
+    int ret;
+    va_list arglist;
+    va_start(arglist, format);
+    ret = ets_vprintf(format, arglist);
+    va_end(arglist);
+    return ret;
+}
+
+
+
 int ICACHE_RAM_ATTR snprintf(char* buffer, size_t size, const char* format, ...) {
     int ret;
     va_list arglist;
@@ -90,6 +104,15 @@ int ICACHE_RAM_ATTR vprintf(const char * format, va_list arg) {
 
 int ICACHE_RAM_ATTR vsnprintf(char * buffer, size_t size, const char * format, va_list arg) {
     return ets_vsnprintf(buffer, size, format, arg);
+}
+
+int ICACHE_RAM_ATTR sscanf(const char* source, const char* format, ...) {
+    int ret = -1;
+    return ret;
+}
+
+double ICACHE_RAM_ATTR difftime(time_t end, time_t beginning) {
+    return -1;
 }
 
 size_t strnlen(const char *s, size_t len) {
